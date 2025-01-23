@@ -53,3 +53,75 @@ z_index = 100
 position = Vector2(960, 0)
 script = ExtResource("3_gbvs2")
 ClawPath = NodePath("../Claw")
+
+[node name="ClawMachine" type="Node2D" parent="."]
+
+[node name="Top" type="StaticBody2D" parent="ClawMachine"]
+
+[node name="Polygon2D" type="Polygon2D" parent="ClawMachine/Top"]
+position = Vector2(0, -960)
+color = Color(0.584122, 0.749012, 1, 1)
+polygon = PackedVector2Array(656, 960, 959.037, 960, 1264, 960, 1264, 1080, 656, 1080)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ClawMachine/Top"]
+position = Vector2(0, -960)
+polygon = PackedVector2Array(656, 960, 1264, 960, 1264, 1080, 656, 1080)
+
+[node name="LeftSide" type="StaticBody2D" parent="ClawMachine"]
+
+[node name="Polygon2D" type="Polygon2D" parent="ClawMachine/LeftSide"]
+color = Color(0.584122, 0.749012, 1, 1)
+polygon = PackedVector2Array(640, 0, 656, 0, 656, 1080, 640, 1080)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ClawMachine/LeftSide"]
+polygon = PackedVector2Array(640, 0, 656, 0, 656, 1080, 640, 1080)
+
+[node name="RightSide" type="StaticBody2D" parent="ClawMachine"]
+
+[node name="Polygon2D" type="Polygon2D" parent="ClawMachine/RightSide"]
+color = Color(0.584122, 0.749012, 1, 1)
+polygon = PackedVector2Array(1264, 0, 1280, 0, 1280, 1080, 1264, 1080)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ClawMachine/RightSide"]
+polygon = PackedVector2Array(1264, 0, 1280, 0, 1280, 1080, 1264, 1080)
+
+[node name="Bottom" type="StaticBody2D" parent="ClawMachine"]
+
+[node name="Polygon2D" type="Polygon2D" parent="ClawMachine/Bottom"]
+color = Color(0.584122, 0.749012, 1, 1)
+polygon = PackedVector2Array(656, 960, 1264, 960, 1264, 1080, 656, 1080)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ClawMachine/Bottom"]
+polygon = PackedVector2Array(656, 960, 1264, 960, 1264, 1080, 656, 1080)
+
+[node name="Tunnel" type="StaticBody2D" parent="ClawMachine"]
+
+[node name="Polygon2D" type="Polygon2D" parent="ClawMachine/Tunnel"]
+position = Vector2(0, -120)
+color = Color(0.584122, 0.749012, 1, 1)
+polygon = PackedVector2Array(768, 760, 784, 760, 784, 1080, 768, 1080)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ClawMachine/Tunnel"]
+polygon = PackedVector2Array(768, 640, 784, 640, 784, 960, 768, 960)
+
+[node name="MainBoard" type="StaticBody2D" parent="ClawMachine"]
+
+[node name="Polygon2D" type="Polygon2D" parent="ClawMachine/MainBoard"]
+position = Vector2(0, -120)
+color = Color(0.584122, 0.749012, 1, 1)
+polygon = PackedVector2Array(784, 872, 1264, 872, 1264, 1080, 784, 1080)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ClawMachine/MainBoard"]
+position = Vector2(0, -120)
+polygon = PackedVector2Array(784, 872, 1264, 872, 1264, 1080, 784, 1080)
+
+[node name="Floor" type="StaticBody2D" parent="ClawMachine"]
+
+[node name="Polygon2D" type="Polygon2D" parent="ClawMachine/Floor"]
+position = Vector2(0, -120)
+color = Color(0.3283, 0.422962, 0.487728, 1)
+polygon = PackedVector2Array(784, 856, 1264, 856, 1264, 872, 784, 872)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ClawMachine/Floor"]
+position = Vector2(0, -120)
+polygon = PackedVector2Array(784, 856, 1264, 856, 1264, 872, 784, 872)
