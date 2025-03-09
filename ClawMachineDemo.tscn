@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dglvcm3t3widq" path="res://Content/Sprites/Claw.png" id="1_dadds"]
 [ext_resource type="Texture2D" uid="uid://djxk6epivj731" path="res://Content/Sprites/closedmouthbear.png" id="2_1jvst"]
-[ext_resource type="Script" path="res://ClawWire.cs" id="3_gbvs2"]
+[ext_resource type="Script" path="res://Buttons.cs" id="3_1po7c"]
 
 [node name="Main2D" type="Node2D"]
 
@@ -51,8 +51,6 @@ polygon = PackedVector2Array(128, -237, 128, -235.7, 89.6, -228, 85.2, -228, 80,
 [node name="ClawWire" type="Node2D" parent="."]
 z_index = 100
 position = Vector2(960, 0)
-script = ExtResource("3_gbvs2")
-ClawPath = NodePath("../Claw")
 
 [node name="ClawMachine" type="Node2D" parent="."]
 
@@ -125,3 +123,30 @@ polygon = PackedVector2Array(784, 856, 1264, 856, 1264, 872, 784, 872)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ClawMachine/Floor"]
 position = Vector2(0, -120)
 polygon = PackedVector2Array(784, 856, 1264, 856, 1264, 872, 784, 872)
+
+[node name="Buttons" type="Control" parent="ClawMachine"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("3_1po7c")
+
+[node name="Down" type="TouchScreenButton" parent="ClawMachine/Buttons"]
+action = "down"
+
+[node name="Polygon2D" type="Polygon2D" parent="ClawMachine/Buttons/Down"]
+position = Vector2(-128, -64)
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(1104, 832, 1136, 832, 1136, 840, 1144, 840, 1144, 848, 1152, 848, 1152, 880, 1144, 880, 1144, 888, 1136, 888, 1136, 896, 1104, 896, 1104, 888, 1096, 888, 1096, 880, 1088, 880, 1088, 848, 1096, 848, 1096, 840, 1104, 840)
+
+[node name="Left" type="TouchScreenButton" parent="ClawMachine/Buttons"]
+action = "left"
+
+[node name="Polygon2D" type="Polygon2D" parent="ClawMachine/Buttons/Left"]
+position = Vector2(-32, -64)
+polygon = PackedVector2Array(976, 848, 976, 880, 936, 880, 936, 896, 896, 864, 936, 832, 936, 848)
+
+[node name="Right" type="TouchScreenButton" parent="ClawMachine/Buttons"]
+action = "right"
+
+[node name="Polygon2D" type="Polygon2D" parent="ClawMachine/Buttons/Right"]
+position = Vector2(-32, -64)
+polygon = PackedVector2Array(1072, 848, 1072, 880, 1112, 880, 1112, 896, 1152, 864, 1112, 832, 1112, 848)
