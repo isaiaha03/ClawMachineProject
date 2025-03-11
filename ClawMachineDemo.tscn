@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1e261rd4v0dd"]
+[gd_scene load_steps=4 format=3 uid="uid://d1e261rd4v0dd"]
 
 [ext_resource type="Script" path="res://ClawMovement.cs" id="1_aljlt"]
-[ext_resource type="Texture2D" uid="uid://dglvcm3t3widq" path="res://Content/Sprites/Claw.png" id="1_dadds"]
 [ext_resource type="Texture2D" uid="uid://djxk6epivj731" path="res://Content/Sprites/closedmouthbear.png" id="2_1jvst"]
 [ext_resource type="Script" path="res://Buttons.cs" id="3_1po7c"]
 
@@ -23,22 +22,64 @@ metadata/_edit_use_anchors_ = true
 [node name="Claw" type="Node2D" parent="."]
 position = Vector2(960, 0)
 script = ExtResource("1_aljlt")
+metadata/LeftArmBottom = NodePath("ClawBody/LeftArmBottom")
+metadata/RightArmBottom = NodePath("ClawBody/RightArmBottom")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Claw"]
+[node name="ClawBody" type="CharacterBody2D" parent="Claw"]
+position = Vector2(0, -496)
 
-[node name="Sprite2D" type="Sprite2D" parent="Claw/CharacterBody2D"]
-position = Vector2(-240, 220)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_dadds")
+[node name="Polygon2D" type="Polygon2D" parent="Claw/ClawBody"]
+color = Color(0.385493, 0.385492, 0.385492, 1)
+polygon = PackedVector2Array(-256, 624, -240, 624, -240, 656, -256, 656)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Claw/CharacterBody2D"]
-position = Vector2(-240, 220)
-scale = Vector2(0.75, 0.75)
-polygon = PackedVector2Array(-6, -132, -6, -130.8, -9.20001, -130, -12.3, -130, -16.3, -127, -18.5, -127, -24.5, -120, -25.7, -120, -28.7, -111, -30, -111, -30, -107, -31, -107, -31, -95.8, -28, -88.9, -28, -86.4, -81.4, -33, -83, -33, -83, -28.7, -79, -22.7, -79, -20.6, -77.4, -19, -76.6, -19, -71, -7.79999, -71, -5.60001, -69.4, -4, -68.6, -4, -62, 9.20001, -62, 11.4, -58, 16.3, -58, 19, -53, 19, -53, 14.7, -74, -23.4, -74, -25.4, -77, -28.4, -77, -30.6, -25, -81.6, -24.4, -82, -19, -76.6, -19, -75.3, -5.20001, -70, 5.20001, -70, 9.20001, -72, 12.3, -72, 16.3, -75, 18.4, -75, 26.4, -84, 77.5, -32.1, 57, 12.8, 57, 17, 61.7, 17, 63.7, 11, 65, 11, 65, 7.20001, 67.6, 2, 69, 2, 69, -1.79999, 71.6, -7, 73, -7, 73, -10.8, 75.6, -16, 77, -16, 77, -19.8, 79.6, -25, 80.8, -25, 81.8, -30, 83, -30, 83, -35.4, 29.4, -89, 31, -95.9, 31, -106.2, 29, -110.3, 29, -113.3, 26, -117.4, 26, -119.5, 19, -125.6, 19, -126.7, 13, -128.7, 13, -129.9, 6, -130.9, 6, -132)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Claw/ClawBody"]
+polygon = PackedVector2Array(-256, 624, -240, 624, -240, 656, -256, 656)
+
+[node name="LeftArmTop" type="CharacterBody2D" parent="Claw/ClawBody"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Claw/ClawBody/LeftArmTop"]
+color = Color(0.384314, 0.384314, 0.384314, 1)
+polygon = PackedVector2Array(-288, 680, -296, 680, -296, 672, -272, 648, -264, 640, -256, 640, -256, 656, -264, 656)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Claw/ClawBody/LeftArmTop"]
+position = Vector2(-16, 72)
+polygon = PackedVector2Array(-248, 568, -240, 568, -240, 584, -248, 584, -272, 608, -280, 608, -280, 600)
+
+[node name="LeftArmBottom" type="CharacterBody2D" parent="Claw/ClawBody"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Claw/ClawBody/LeftArmBottom"]
+color = Color(0.384314, 0.384314, 0.384314, 1)
+polygon = PackedVector2Array(-296, 680, -296, 736, -280, 752, -280, 744, -288, 736, -288, 680)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Claw/ClawBody/LeftArmBottom"]
+polygon = PackedVector2Array(-296, 680, -288, 680, -288, 736, -280, 744, -280, 752, -296, 736)
+one_way_collision = true
+one_way_collision_margin = 5.0
+
+[node name="RightArmTop" type="CharacterBody2D" parent="Claw/ClawBody"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Claw/ClawBody/RightArmTop"]
+color = Color(0.384314, 0.384314, 0.384314, 1)
+polygon = PackedVector2Array(-240, 640, -232, 640, -200, 672, -200, 680, -208, 680, -232, 656, -240, 656)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Claw/ClawBody/RightArmTop"]
+polygon = PackedVector2Array(-240, 640, -232, 640, -200, 672, -200, 680, -208, 680, -232, 656, -240, 656)
+
+[node name="RightArmBottom" type="CharacterBody2D" parent="Claw/ClawBody"]
+
+[node name="Polygon2D" type="Polygon2D" parent="Claw/ClawBody/RightArmBottom"]
+color = Color(0.384314, 0.384314, 0.384314, 1)
+polygon = PackedVector2Array(-208, 680, -200, 680, -200, 736, -216, 752, -216, 744, -208, 736)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Claw/ClawBody/RightArmBottom"]
+polygon = PackedVector2Array(-208, 680, -200, 680, -200, 736, -216, 752, -216, 744, -208, 736)
+one_way_collision = true
+one_way_collision_margin = 5.0
 
 [node name="ToyBear" type="Node2D" parent="."]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="ToyBear"]
+gravity_scale = 0.75
 
 [node name="Sprite2D" type="Sprite2D" parent="ToyBear/RigidBody2D"]
 position = Vector2(960, 580)

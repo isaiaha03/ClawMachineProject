@@ -5,27 +5,29 @@ using System.Collections.Generic;
 public partial class ClawMovement : Node2D
 {
 	[Export] public float Speed = 200f;
-	[Export] public float DropSpeed = 250f;
-	[Export] public float GrabDepth = 150f;
-	[Export] public float ClawCloseDelay = 0.5f;
-	[Export] public float ClawOpenDelay = 0.5f;
+	[Export] public float DropSpeed = 350f;
+	[Export] public float GrabDepth = 450f;
+	[Export] public float ClawCloseDelay = 0.1f;
+	[Export] public float ClawOpenDelay = 0.1f;
 	
-	private Sprite2D _clawSprite;
+	private CharacterBody2D _clawLeftArmBottom;
+	private CharacterBody2D _clawRightArmBottom;
 	private Vector2 _startPosition;
 	private State _state = State.Moving;
+	private Tween _tween;
 	
 	private enum State { Idle, Moving, Dropping, Closing, Returning, Opening }
 	
 	public override void _Ready()
 	{
 		_startPosition = Position;
-		_clawSprite = GetNode<Sprite2D>("CharacterBody2D/Sprite2D");
+		_clawLeftArmBottom = GetNode<CharacterBody2D>("ClawBody/LeftArmBottom");
+		_clawRightArmBottom = GetNode<CharacterBody2D>("ClawBody/RightArmBottom");
+		
 	}
 	
 	public override void _Process(double delta)
 	{
-		GD.Print(_state);
-		
 		switch (_state)
 		{
 			case State.Moving:
@@ -77,10 +79,18 @@ public partial class ClawMovement : Node2D
 	
 	private void CloseClaw()
 	{
-		if (_clawSprite != null)
+		if (_tween == null || !_tween.IsValid())
 		{
-			_clawSprite.Scale = new Vector2(0.6f, 1.0f);
+			_tween = CreateTween();
 		}
+		else
+		{
+			_tween.Kill();
+			_tween = CreateTween();
+		}
+		
+		_tween.TweenProperty(_clawLeftArmBottom, "position:x", _clawLeftArmBottom.Position.X + 10, 0.025f);
+		_tween.TweenProperty(_clawRightArmBottom, "position:x", _clawRightArmBottom.Position.X - 10, 0.025f);
 		
 		_state = State.Returning;
 	}
@@ -98,10 +108,18 @@ public partial class ClawMovement : Node2D
 	
 	private void OpenClaw()
 	{
-		if (_clawSprite != null)
+		if (_tween == null || !_tween.IsValid())
 		{
-			_clawSprite.Scale = new Vector2(1.0f, 1.0f);
+			_tween = CreateTween();
 		}
+		else
+		{
+			_tween.Kill();
+			_tween = CreateTween();
+		}
+		
+		_tween.TweenProperty(_clawLeftArmBottom, "position:x", _clawLeftArmBottom.Position.X - 10, 0.2f);
+		_tween.TweenProperty(_clawRightArmBottom, "position:x", _clawRightArmBottom.Position.X + 10, 0.2f);
 		
 		_state = State.Moving;
 	}
