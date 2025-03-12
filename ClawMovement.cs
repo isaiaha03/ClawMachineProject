@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public partial class ClawMovement : Node2D
 {
 	[Export] public float Speed = 200f;
-	[Export] public float DropSpeed = 350f;
-	[Export] public float GrabDepth = 450f;
+	[Export] public float DropSpeed = 300f;
+	[Export] public float GrabDepth = 480f;
 	[Export] public float ClawCloseDelay = 0.1f;
 	[Export] public float ClawOpenDelay = 0.1f;
 	

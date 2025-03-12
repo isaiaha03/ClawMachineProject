@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1e261rd4v0dd"]
+[gd_scene load_steps=5 format=3 uid="uid://d1e261rd4v0dd"]
 
 [ext_resource type="Script" path="res://ClawMovement.cs" id="1_aljlt"]
-[ext_resource type="Texture2D" uid="uid://djxk6epivj731" path="res://Content/Sprites/closedmouthbear.png" id="2_1jvst"]
+[ext_resource type="PhysicsMaterial" uid="uid://bj817e2teto76" path="res://static_physics.tres" id="2_1ciak"]
+[ext_resource type="PhysicsMaterial" uid="uid://cnccua823debx" path="res://rigid_physics.tres" id="2_tlurm"]
 [ext_resource type="Script" path="res://Buttons.cs" id="3_1po7c"]
 
 [node name="Main2D" type="Node2D"]
@@ -76,20 +77,54 @@ polygon = PackedVector2Array(-208, 680, -200, 680, -200, 736, -216, 752, -216, 7
 one_way_collision = true
 one_way_collision_margin = 5.0
 
-[node name="ToyBear" type="Node2D" parent="."]
+[node name="GrabbableObjectOne" type="Node2D" parent="."]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="ToyBear"]
-gravity_scale = 0.75
+[node name="RigidBody2D" type="RigidBody2D" parent="GrabbableObjectOne"]
+physics_material_override = ExtResource("2_tlurm")
+gravity_scale = 2.0
+continuous_cd = 1
+angular_damp = 200.0
 
-[node name="Sprite2D" type="Sprite2D" parent="ToyBear/RigidBody2D"]
-position = Vector2(960, 580)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_1jvst")
+[node name="Polygon2D" type="Polygon2D" parent="GrabbableObjectOne/RigidBody2D"]
+position = Vector2(8, -24)
+color = Color(1, 0.6, 0.701961, 1)
+polygon = PackedVector2Array(832, 648, 832, 664, 816, 664, 816, 680, 832, 680, 832, 696, 816, 696, 816, 712, 832, 712, 832, 728, 848, 728, 848, 712, 864, 712, 864, 728, 880, 728, 880, 712, 896, 712, 896, 696, 880, 696, 880, 680, 896, 680, 896, 664, 880, 664, 880, 648, 864, 648, 864, 664, 848, 664, 848, 648)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ToyBear/RigidBody2D"]
-position = Vector2(960, 580)
-scale = Vector2(0.2, 0.2)
-polygon = PackedVector2Array(128, -237, 128, -235.7, 89.6, -228, 85.2, -228, 80, -222.8, 80, -218.2, 86.2, -212, -13, -211, -113.6, -211, -110.9, -216, -109.8, -216, -108.7, -218, -112, -223.5, -112, -225.7, -159.8, -233, -165.8, -233, -200, -198.8, -200, -191.9, -197, -189.9, -197, -188.1, -178.1, -187, -167.7, -187, -144, -66.6, -144, -63.7, -44.6, -20.5, -220.5, 72, -223, 72, -223, 78.8, -189.8, 113, -184.5, 113, -84.6, 59.6, -137, 198.6, -137, 203, -132, 206.9, -132, 209, -75, 210, -71, 210, -68, 206, -66.7, 206, -27.7, 111.3, 2, 199.3, 2, 203.4, 9.70001, 206, 69.8, 206, 74, 201.8, 74, 197.7, 34, 58, 34, 57.2, 147, 114.2, 147, 116, 152.9, 116, 182, 84.8, 182, 78.8, 8.29999, -19.4, 95.4, -59, 98.7, -59, 106.7, -65, 110.2, -65, 107, -71.5, 107, -75, 136, -189.8, 136, -191.2, 147.2, -192, 166.1, -192, 168.1, -195, 170, -195, 170, -201.8, 136, -234.9, 136, -237)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GrabbableObjectOne/RigidBody2D"]
+position = Vector2(0, -16)
+polygon = PackedVector2Array(824, 656, 840, 656, 840, 640, 856, 640, 856, 656, 872, 656, 872, 640, 888, 640, 888, 656, 904, 656, 904, 672, 888, 672, 888, 688, 904, 688, 904, 704, 888, 704, 888, 720, 872, 720, 872, 704, 856, 704, 856, 720, 840, 720, 840, 704, 824, 704, 824, 688, 840, 688, 840, 672, 824, 672)
+
+[node name="GrabbableObjectTwo" type="Node2D" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="GrabbableObjectTwo"]
+physics_material_override = ExtResource("2_tlurm")
+gravity_scale = 0.5
+continuous_cd = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="GrabbableObjectTwo/RigidBody2D"]
+position = Vector2(8, -16)
+color = Color(1, 0.6, 0.701961, 1)
+polygon = PackedVector2Array(968, 648, 952, 664, 944, 680, 952, 696, 968, 712, 984, 720, 1000, 712, 1016, 696, 1024, 680, 1016, 664, 1000, 648, 984, 640)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GrabbableObjectTwo/RigidBody2D"]
+position = Vector2(0, -16)
+polygon = PackedVector2Array(992, 640, 1008, 648, 1024, 664, 1032, 680, 1024, 696, 1008, 712, 992, 720, 976, 712, 960, 696, 952, 680, 960, 664, 976, 648)
+
+[node name="GrabbableObjectThree" type="Node2D" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="GrabbableObjectThree"]
+physics_material_override = ExtResource("2_tlurm")
+gravity_scale = 0.5
+continuous_cd = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="GrabbableObjectThree/RigidBody2D"]
+position = Vector2(8, -16)
+color = Color(1, 0.6, 0.701961, 1)
+polygon = PackedVector2Array(1088, 640, 1072, 640, 1072, 656, 1080, 656, 1080, 664, 1088, 664, 1088, 672, 1096, 672, 1096, 680, 1104, 680, 1104, 688, 1112, 688, 1112, 696, 1120, 696, 1120, 704, 1128, 704, 1128, 712, 1136, 712, 1136, 720, 1152, 720, 1152, 704, 1144, 704, 1144, 696, 1136, 696, 1136, 688, 1128, 688, 1128, 680, 1120, 680, 1120, 672, 1112, 672, 1112, 664, 1104, 664, 1104, 656, 1096, 656, 1096, 648, 1088, 648)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GrabbableObjectThree/RigidBody2D"]
+position = Vector2(0, -16)
+polygon = PackedVector2Array(1080, 640, 1096, 640, 1096, 648, 1104, 648, 1104, 656, 1112, 656, 1112, 664, 1120, 664, 1120, 672, 1128, 672, 1128, 680, 1136, 680, 1136, 688, 1144, 688, 1144, 696, 1152, 696, 1152, 704, 1160, 704, 1160, 720, 1144, 720, 1144, 712, 1136, 712, 1136, 704, 1128, 704, 1128, 696, 1120, 696, 1120, 688, 1112, 688, 1112, 680, 1104, 680, 1104, 672, 1096, 672, 1096, 664, 1088, 664, 1088, 656, 1080, 656)
 
 [node name="ClawWire" type="Node2D" parent="."]
 z_index = 100
@@ -98,6 +133,7 @@ position = Vector2(960, 0)
 [node name="ClawMachine" type="Node2D" parent="."]
 
 [node name="Top" type="StaticBody2D" parent="ClawMachine"]
+physics_material_override = ExtResource("2_1ciak")
 
 [node name="Polygon2D" type="Polygon2D" parent="ClawMachine/Top"]
 position = Vector2(0, -960)
@@ -109,6 +145,7 @@ position = Vector2(0, -960)
 polygon = PackedVector2Array(656, 960, 1264, 960, 1264, 1080, 656, 1080)
 
 [node name="LeftSide" type="StaticBody2D" parent="ClawMachine"]
+physics_material_override = ExtResource("2_1ciak")
 
 [node name="Polygon2D" type="Polygon2D" parent="ClawMachine/LeftSide"]
 color = Color(0.584122, 0.749012, 1, 1)
@@ -118,6 +155,7 @@ polygon = PackedVector2Array(640, 0, 656, 0, 656, 1080, 640, 1080)
 polygon = PackedVector2Array(640, 0, 656, 0, 656, 1080, 640, 1080)
 
 [node name="RightSide" type="StaticBody2D" parent="ClawMachine"]
+physics_material_override = ExtResource("2_1ciak")
 
 [node name="Polygon2D" type="Polygon2D" parent="ClawMachine/RightSide"]
 color = Color(0.584122, 0.749012, 1, 1)
@@ -127,6 +165,7 @@ polygon = PackedVector2Array(1264, 0, 1280, 0, 1280, 1080, 1264, 1080)
 polygon = PackedVector2Array(1264, 0, 1280, 0, 1280, 1080, 1264, 1080)
 
 [node name="Bottom" type="StaticBody2D" parent="ClawMachine"]
+physics_material_override = ExtResource("2_1ciak")
 
 [node name="Polygon2D" type="Polygon2D" parent="ClawMachine/Bottom"]
 color = Color(0.584122, 0.749012, 1, 1)
@@ -136,6 +175,7 @@ polygon = PackedVector2Array(656, 960, 1264, 960, 1264, 1080, 656, 1080)
 polygon = PackedVector2Array(656, 960, 1264, 960, 1264, 1080, 656, 1080)
 
 [node name="Tunnel" type="StaticBody2D" parent="ClawMachine"]
+physics_material_override = ExtResource("2_1ciak")
 
 [node name="Polygon2D" type="Polygon2D" parent="ClawMachine/Tunnel"]
 position = Vector2(0, -120)
@@ -146,6 +186,7 @@ polygon = PackedVector2Array(768, 760, 784, 760, 784, 1080, 768, 1080)
 polygon = PackedVector2Array(768, 640, 784, 640, 784, 960, 768, 960)
 
 [node name="MainBoard" type="StaticBody2D" parent="ClawMachine"]
+physics_material_override = ExtResource("2_1ciak")
 
 [node name="Polygon2D" type="Polygon2D" parent="ClawMachine/MainBoard"]
 position = Vector2(0, -120)
@@ -157,6 +198,7 @@ position = Vector2(0, -120)
 polygon = PackedVector2Array(784, 872, 1264, 872, 1264, 1080, 784, 1080)
 
 [node name="Floor" type="StaticBody2D" parent="ClawMachine"]
+physics_material_override = ExtResource("2_1ciak")
 
 [node name="Polygon2D" type="Polygon2D" parent="ClawMachine/Floor"]
 position = Vector2(0, -120)
