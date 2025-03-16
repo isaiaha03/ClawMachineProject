@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1e261rd4v0dd"]
+[gd_scene load_steps=9 format=3 uid="uid://d1e261rd4v0dd"]
 
 [ext_resource type="Script" path="res://ClawMovement.cs" id="1_aljlt"]
 [ext_resource type="PhysicsMaterial" uid="uid://bj817e2teto76" path="res://static_physics.tres" id="2_1ciak"]
@@ -6,6 +6,15 @@
 [ext_resource type="Script" path="res://Buttons.cs" id="3_1po7c"]
 [ext_resource type="Texture2D" uid="uid://dibu3x6xcx5iy" path="res://Content/Sprites/star.png" id="3_epj7c"]
 [ext_resource type="Texture2D" uid="uid://d4ct5ok50ejdk" path="res://Content/Sprites/bnuy.png" id="4_rcbgt"]
+
+[sub_resource type="SystemFont" id="SystemFont_fda75"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rqovr"]
+font = SubResource("SystemFont_fda75")
+font_size = 86
+font_color = Color(1, 1, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Main2D" type="Node2D"]
 
@@ -142,6 +151,15 @@ polygon = PackedVector2Array(656, 960, 959.037, 960, 1264, 960, 1264, 1080, 656,
 position = Vector2(0, -960)
 polygon = PackedVector2Array(656, 960, 1264, 960, 1264, 1080, 656, 1080)
 
+[node name="Label" type="Label" parent="ClawMachine/Top"]
+offset_left = 704.0
+offset_right = 1212.0
+offset_bottom = 118.0
+text = "CLAW GAME"
+label_settings = SubResource("LabelSettings_rqovr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="LeftSide" type="StaticBody2D" parent="ClawMachine"]
 physics_material_override = ExtResource("2_1ciak")
 
@@ -215,21 +233,8 @@ script = ExtResource("3_1po7c")
 [node name="Down" type="TouchScreenButton" parent="ClawMachine/Buttons"]
 action = "down"
 
-[node name="Polygon2D" type="Polygon2D" parent="ClawMachine/Buttons/Down"]
-position = Vector2(-128, -64)
-color = Color(1, 0, 0, 1)
-polygon = PackedVector2Array(1104, 832, 1136, 832, 1136, 840, 1144, 840, 1144, 848, 1152, 848, 1152, 880, 1144, 880, 1144, 888, 1136, 888, 1136, 896, 1104, 896, 1104, 888, 1096, 888, 1096, 880, 1088, 880, 1088, 848, 1096, 848, 1096, 840, 1104, 840)
-
 [node name="Left" type="TouchScreenButton" parent="ClawMachine/Buttons"]
 action = "left"
 
-[node name="Polygon2D2" type="Polygon2D" parent="ClawMachine/Buttons/Left"]
-position = Vector2(-32, -64)
-polygon = PackedVector2Array(976, 848, 976, 880, 936, 880, 936, 896, 896, 864, 936, 832, 936, 848)
-
 [node name="Right" type="TouchScreenButton" parent="ClawMachine/Buttons"]
 action = "right"
-
-[node name="Polygon2D3" type="Polygon2D" parent="ClawMachine/Buttons/Right"]
-position = Vector2(-32, -64)
-polygon = PackedVector2Array(1072, 848, 1072, 880, 1112, 880, 1112, 896, 1152, 864, 1112, 832, 1112, 848)
