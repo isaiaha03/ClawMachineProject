@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1e261rd4v0dd"]
+[gd_scene load_steps=12 format=3 uid="uid://d1e261rd4v0dd"]
 
 [ext_resource type="Script" path="res://ClawMovement.cs" id="1_aljlt"]
 [ext_resource type="PhysicsMaterial" uid="uid://bj817e2teto76" path="res://static_physics.tres" id="2_1ciak"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://Buttons.cs" id="3_1po7c"]
 [ext_resource type="Texture2D" uid="uid://dibu3x6xcx5iy" path="res://Content/Sprites/star.png" id="3_epj7c"]
 [ext_resource type="Texture2D" uid="uid://d4ct5ok50ejdk" path="res://Content/Sprites/bnuy.png" id="4_rcbgt"]
+[ext_resource type="Texture2D" uid="uid://bmwid4y37lb3m" path="res://Content/Sprites/down_button.png" id="7_waw1p"]
+[ext_resource type="Texture2D" uid="uid://cmcpbf3tjorj3" path="res://Content/Sprites/left_button.png" id="8_6mb5r"]
+[ext_resource type="Texture2D" uid="uid://dehu6dm7try0i" path="res://Content/Sprites/right_button.png" id="9_2pp05"]
 
 [sub_resource type="SystemFont" id="SystemFont_fda75"]
 
@@ -231,10 +234,19 @@ anchors_preset = 0
 script = ExtResource("3_1po7c")
 
 [node name="Down" type="TouchScreenButton" parent="ClawMachine/Buttons"]
+position = Vector2(975, 770)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("7_waw1p")
 action = "down"
 
 [node name="Left" type="TouchScreenButton" parent="ClawMachine/Buttons"]
+position = Vector2(850, 770)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("8_6mb5r")
 action = "left"
 
 [node name="Right" type="TouchScreenButton" parent="ClawMachine/Buttons"]
+position = Vector2(1100, 770)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("9_2pp05")
 action = "right"
